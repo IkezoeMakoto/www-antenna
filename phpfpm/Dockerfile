@@ -19,3 +19,5 @@ COPY conf/php-fpm.d/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY conf/php/php.ini /usr/local/etc/php/php.ini
 
 COPY src/ /var/www/html
+
+RUN make

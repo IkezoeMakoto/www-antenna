@@ -4,6 +4,9 @@ services:
     build: ./phpfpm
     volumes:
       - ./phpfpm/src:/var/www/html
+    environment:
+      url: "${GET_URL}"
+      auth: "${AUTH}"
 
   web:
     build: ./web
