@@ -1,0 +1,13 @@
+version: "3"
+services:
+  phpfpm:
+    build: ./phpfpm
+    volumes:
+      - ./phpfpm/src:/var/www/html
+
+  web:
+    build: ./web
+    ports:
+      - "${PORT}:80"
+    depends_on:
+      - phpfpm
