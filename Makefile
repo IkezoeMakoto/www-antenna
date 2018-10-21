@@ -1,4 +1,4 @@
-.PHONY: up down clean
+.PHONY: up down clean getAntenna
 
 .env:
 	@cp .env.example .env
@@ -11,3 +11,6 @@ down:
 
 clean:
 	docker-compose system prune
+
+getAntenna:
+	docker-compose run --rm phpfpm make cache

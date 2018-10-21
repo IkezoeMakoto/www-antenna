@@ -7,6 +7,7 @@ services:
     environment:
       url: "${GET_URL}"
       auth: "${AUTH}"
+      COMPOSER_ALLOW_SUPERUSER: 1
 
   web:
     build: ./web
@@ -14,3 +15,6 @@ services:
       - "${PORT}:80"
     depends_on:
       - phpfpm
+
+  redis:
+    image: redis:5-alpine

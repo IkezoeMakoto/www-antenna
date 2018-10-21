@@ -1,24 +1,14 @@
 <?php
 require_once(__DIR__."/vendor/autoload.php");
 
-use \GuzzleHttp\Client;
+$key = 'articles';
 
-// 記事取得
-$uri = getenv('url');
-$client = new Client([
-    'base_uri' => $uri,
+$redisClient = new \Predis\Client([
+    'scheme' => 'tcp',
+    'host'   => 'redis',
+    'port'   => 6379,
 ]);
-
-$method = 'GET';
-$uri = '/articles/search';
-$options = [
-    'query' => ['keyword' => 'www'],
-    'headers' => [
-        'Authorization' => getenv('auth')
-    ]
-];
-$response = $client->request($method, $uri, $options);
-$list = json_decode($response->getBody()->getContents(), true)['articles'];
+$list = json_decode($redisClient->get($key), true);
 
 // 設定
 $title = 'くさあんてな';
